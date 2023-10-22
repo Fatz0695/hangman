@@ -23,23 +23,20 @@ class Hangman:
             for index, letter in enumerate(self.word):
                 if letter == guess:
                     self.word_guessed[index] = guess
-           
             self.num_letters -= 1
             print(self.word_guessed)
             print(self.num_letters)
-            #return self.num_letters
             
          #If the letter is not in the word, reduce the number of lives by 1    
         else:
             self.num_lives -= 1
             print(f"Sorry, {guess} is not in the word.")
             print(f"You have {self.num_lives} lives left.")
-            
-            
-    
+        
     #Ask the user for a letter iteratively until the user enters a valid letter
     def ask_for_input(self): 
             guess = input("Please enter a value: ")
+            guess.lower()
             if len(guess) != 1 or (guess.isalpha()) != True:
                 print("Invalid input. Please, enter a single alphabetical character.")
             elif guess in self.list_of_guesses:
@@ -48,8 +45,6 @@ class Hangman:
                 self.check_guess(guess)
             self.list_of_guesses.append(guess)
     
-        
-
 def play_game(word_list):
     num_lives = 5
     game= Hangman(word_list, num_lives)
